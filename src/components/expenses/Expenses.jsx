@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Table, Button } from "react-bootstrap";
 import Expense from "../expense/Expense";
 import AddExpense from "../addexpense/AddExpense";
 
 export default function Expenses() {
+    const [addExpense, setAddExpense] = useState(false);
   return (
     <>
+    {(addExpense) && <AddExpense/>}
       <Card>
         <Card.Header>
-          <Button className="btn btn-primary">Add</Button>
-          <Button className="btn btn-danger">Cancel</Button>
+          <Button className="btn btn-primary m-2" onClick={()=>setAddExpense(true)}>Add</Button>
+          <Button className="btn btn-danger" onClick={()=>{setAddExpense(false)}}>Cancel</Button>
         </Card.Header>
         <Card.Header>
           <h3>Expenses list:</h3>

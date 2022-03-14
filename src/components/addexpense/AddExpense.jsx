@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Card, Form, Button, FloatingLabel } from "react-bootstrap";
 
-export default function AddExpense() {
+export default function AddExpense(props) {
   const [items, setItems] = useState({
     date: "",
     type: "",
@@ -15,13 +15,17 @@ export default function AddExpense() {
       [e.target.name]: e.target.value,
     });
   };
-  console.log(items);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    props.onSave(items)
+  }
   return (
     <>
       <Card>
         <Card.Header>Add expense to expense list</Card.Header>
         <Card.Body>
-          <Form>
+          <Form onSubmit={submitHandler}>
             <Form.Group className="mb-3">
               <Form.Label>Choose date</Form.Label>
               <Form.Control
@@ -32,12 +36,11 @@ export default function AddExpense() {
               />
             </Form.Group>
             <Form.Group className="mb-3">
-              <FloatingLabel label="Choose expense type"></FloatingLabel>
+              <FloatingLabel style={{paddingBottom: '45px', marginLeft: '-13px'}} label="Choose expense type"></FloatingLabel>
               <Form.Select
                 value={items.type}
                 name="type"
-                onChange={handleChange}
-              >
+                onChange={handleChange}>
                 <option>Entertainment</option>
                 <option>Rent</option>
                 <option>Credit</option>
@@ -63,7 +66,7 @@ export default function AddExpense() {
                 onChange={handleChange}
               ></Form.Control>
             </Form.Group>
-            <Button>Save</Button>
+            <Button type="submit" className="mt-3">Save</Button>
           </Form>
         </Card.Body>
       </Card>

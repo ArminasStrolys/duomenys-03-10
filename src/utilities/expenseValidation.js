@@ -1,15 +1,15 @@
-const expenseValidation = (values) => {
+const expenseValidation = (value) => {
   const errors = {};
-  if (!values.date) {
+  if (!value.date) {
     errors.date = "Please choose date";
   }
-  if (!values.type) {
-    errors.date = "Please choose type";
+  if (!value.type) {
+    errors.type = "Please choose type";
   }
-  if (!values.description) {
+  if (!value.description) {
     errors.description = "Please enter descriptions";
   }
-  if (!values.amount) {
+  if (!value.amount) {
     errors.amount = "Please enter amount";
   }
 

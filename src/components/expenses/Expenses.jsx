@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import AddExpense from "../addexpense/AddExpense";
 import ExpensesTable from "../expensesTable/ExpensesTable";
+import * as service from '../../services/expensesServices'
 
 export default function Expenses() {
   const [addExpense, setAddExpense] = useState(false);
@@ -11,6 +12,7 @@ export default function Expenses() {
     setExpenses((prevData) => {
       return [data, ...prevData];
     });
+    service.addExpense(data);
     setAddExpense(false);
   };
   console.log(expenses);

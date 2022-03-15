@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Card, Form, Button, FloatingLabel } from "react-bootstrap";
+import expenseValidation from '../../utilities/expenseValidation'
+import Error from "../error/Error";
 
 export default function AddExpense(props) {
   const [items, setItems] = useState({
@@ -9,6 +11,8 @@ export default function AddExpense(props) {
     amount: "",
   });
 
+  const [errors, setErrors] = useState('')
+
   const handleChange = (e) => {
     setItems({
       ...items,
@@ -17,14 +21,21 @@ export default function AddExpense(props) {
   };
 
   const submitHandler = (e) => {
-    e.preventDefault();
+    e.preventDefault()
+    const validate = expenseValidation(items)
+    setErrors(validate)
+if (Object.keys(errors).length !== 0){
     props.onSave(items)
   }
+  }
+  console.log('Validacijos klaida: ' + items);
+console.log(errors);
   return (
     <>
       <Card>
         <Card.Header>Add expense to expense list</Card.Header>
         <Card.Body>
+        {errors && Object.keys(errors).map(keyName=>(<Error error={errors[keyName]} />))}
           <Form onSubmit={submitHandler}>
             <Form.Group className="mb-3">
               <Form.Label>Choose date</Form.Label>

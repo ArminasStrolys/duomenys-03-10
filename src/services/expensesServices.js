@@ -37,3 +37,11 @@ export const updateExpense = (id, data) => {
     .doc(id)
     .set(data)
 }
+
+export const deleteExpense = (id) => {
+    firebase
+    .firestore()
+    .collection('expenses')
+    .doc(id)
+    .delete()
+}

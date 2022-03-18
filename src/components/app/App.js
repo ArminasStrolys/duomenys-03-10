@@ -13,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Expenses />} />
           <Route path="expense/update/:id" element={<AddExpense />} />
+          <Route path="expense/delete/:id" element={<Expenses />} />
         </Routes>
       </Router>
     </Container>

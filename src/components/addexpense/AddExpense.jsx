@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Form, Button, FloatingLabel } from "react-bootstrap";
 import expenseValidation from '../../utilities/expenseValidation'
 import Error from "../error/Error";
+import { useParams, useNavigate } from "react-router-dom";
+import * as services from '../../services/expensesServices'
 
 export default function AddExpense(props) {
   const [items, setItems] = useState({
@@ -12,6 +14,13 @@ export default function AddExpense(props) {
   });
 
   const [errors, setErrors] = useState('')
+const {id}=useParams()
+const navigate=useNavigate()
+console.log('id: ' + id);
+
+useEffect( () => {
+  id && services.getExpenseById(item => setItems(item), id)
+}, [id])
 
   const handleChange = (e) => {
     setItems({
@@ -25,9 +34,16 @@ export default function AddExpense(props) {
     const validate = expenseValidation(items)
     setErrors(validate)
 if (Object.keys(errors).length !== 0){
-    props.onSave(items)
+
   }
+  props.onSave(items)
   }
+
+  const updateHandler = () => {
+    services.updateExpense(id, items)
+    navigate("/")
+  }
+
   console.log('Validacijos klaida: ' + items);
 console.log(errors);
   return (
@@ -77,7 +93,12 @@ console.log(errors);
                 onChange={handleChange}
               ></Form.Control>
             </Form.Group>
+
+         {(id)?
+          <Button onClick={updateHandler}>Update</Button>:
             <Button type="submit" className="mt-3">Save</Button>
+         }
+
           </Form>
         </Card.Body>
       </Card>

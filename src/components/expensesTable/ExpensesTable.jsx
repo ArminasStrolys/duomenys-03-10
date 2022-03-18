@@ -12,6 +12,8 @@ export default function ExpensesTable(props) {
                 <th>Expenses list</th>
                 <th>Description</th>
                 <th>Sum</th>
+                <th>Edit</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -19,6 +21,7 @@ export default function ExpensesTable(props) {
                   return(
                 <Expense
                   key={i}
+                  id={expense.id}
                   date={expense.date}
                   type={expense.type}
                   description={expense.description}

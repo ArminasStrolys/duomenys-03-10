@@ -2,7 +2,7 @@ import firebase from "../firebase";
 
 export const addExpense = (data) => {
     firebase
-    .firebase()
+    .firestore()
     .collection('expenses')
     .add(data)
 
@@ -23,7 +23,7 @@ export const getAllExpenses = (onExpensesReturn) => {
 
 export const getExpenseById = (item, id) => {
     firebase
-    .firestore
+    .firestore()
     .collection('expenses')
     .doc(id)
     .get()

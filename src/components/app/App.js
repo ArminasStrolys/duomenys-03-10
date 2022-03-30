@@ -4,6 +4,8 @@ import Header from "../header/Header";
 import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AddExpense from "../addexpense/AddExpense";
+import Register from "../auth/register/Register";
+import Login from "../auth/login/login";
 
 function App() {
   return (
@@ -11,7 +13,9 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<Expenses />} />
+          <Route path="/expenses" element={<Expenses />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="expense/update/:id" element={<AddExpense />} />
           <Route path="expense/delete/:id" element={<Expenses />} />
         </Routes>

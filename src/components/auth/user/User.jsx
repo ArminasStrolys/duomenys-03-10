@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { auth } from "../../../services/authServices";
 import { logout } from "../../../services/authServices";
 import * as userServices from '../../../services/userServices'
@@ -12,14 +12,17 @@ const User = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (loading) return;
-    if (!user) navigate("/");
-    userServices.getUserData(user, setUserData)
-  }, [user, loading, userData]);
+    if (!user) {
+      navigate("/")
+  } else {
+    userServices.getUserData(user,setUserData)
+  }
+  }, [user, loading]);
 
-  console.log(userData)
+  console.log('useris', userData)
   return (
     <>
-      {user ? (
+      {user ? ( //Ar turim prisijungusi vartotoja ?
         <Navbar.Collapse className="justify-content-end">
           <NavDropdown title="Name Surname" id="basic-nav-dropdown">
             <NavDropdown.Item>name@something.com</NavDropdown.Item>

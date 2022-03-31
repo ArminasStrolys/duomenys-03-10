@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Expense from "../expense/Expense";
 import { Table } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
+import * as service from "../../services/expensesServices";
 import * as services from "../../services/expensesServices";
 
 export default function ExpensesTable(props) {
@@ -10,8 +11,9 @@ export default function ExpensesTable(props) {
 
   useEffect(() => {
     id && services.deleteExpense(id);
-    navigate("/");
+    navigate("/expenses");
   }, [id]);
+
   return (
     <>
       <Table striped bordered hover>

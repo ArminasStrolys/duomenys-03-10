@@ -27,5 +27,9 @@ const login = async (email, password) => {
   }
 };
 
+const logout = () => {
+  auth.signOut();
+}
+
 export default firebase;
-export { auth, db, register, login };
+export { auth, db, register, login, logout };

@@ -1,11 +1,15 @@
-import React from 'react';
+import React from "react";
+import firebase from "firebase";
 
-const userServices = () => {
-    return (
-        <div>
-            
-        </div>
-    );
-}
-
-export default userServices;
+export const getUserData = (user, setUser) => {
+  try {
+    firebase
+      .firestore()
+      .collection("users")
+      .where("uid", "==", user?.uid)
+      .get()
+      .then((userData) => setUser(userData.docs[0].data()));
+  } catch (err) {
+    console.log(err);
+  }
+};

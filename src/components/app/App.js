@@ -13,8 +13,8 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route path="/expenses" element={<Expenses />} />
           <Route path="/" element={<Login />} />
+          <Route path="/expenses" element={<Expenses />} />
           <Route path="/register" element={<Register />} />
           <Route path="expense/update/:id" element={<AddExpense />} />
           <Route path="expense/delete/:id" element={<Expenses />} />

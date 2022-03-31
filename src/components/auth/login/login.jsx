@@ -2,7 +2,7 @@ import React from "react";
 import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import { login, auth } from "../../../services/authServices";
-import useAuthState from "react-firebase-hooks/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 

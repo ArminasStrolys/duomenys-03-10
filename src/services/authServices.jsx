@@ -31,5 +31,15 @@ const logout = () => {
   auth.signOut();
 }
 
+const resetPw = async (email) => {
+  try{
+await auth.sendPasswordResetEmail(email)
+alert('Reset completed')
+  } catch(err){
+    console.log(err)
+  }
+  auth.signOut();
+}
+
 export default firebase;
-export { auth, db, register, login, logout };
+export { auth, db, register, login, logout, resetPw };

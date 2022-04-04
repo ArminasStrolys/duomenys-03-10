@@ -3,8 +3,12 @@ import { Card, Button } from "react-bootstrap";
 import AddExpense from "../addexpense/AddExpense";
 import ExpensesTable from "../expensesTable/ExpensesTable";
 import * as service from '../../services/expensesServices'
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../services/authServices";
+
 
 export default function Expenses() {
+  const [user, error,loading] = useAuthState(auth)
   const [addExpense, setAddExpense] = useState(false);
   const [expenses, setExpenses] = useState([]);
 
@@ -14,8 +18,10 @@ export default function Expenses() {
   };
 
   useEffect( () => {
-service.getAllExpenses(expenses=>setExpenses(expenses))
-  }, [])
+    if(loading) return
+service.getAllExpenses(expenses=>
+  setExpenses(expenses), user)
+  }, [user, loading])
   console.log(expenses);
   return (
     <>

@@ -28,7 +28,7 @@ export default function ExpensesTable(props) {
           </tr>
         </thead>
         <tbody>
-          {props.data.map((expense, i) => {
+          {props.data.lenght && props.data.map((expense, i) => {
             return (
               <Expense
                 key={i}

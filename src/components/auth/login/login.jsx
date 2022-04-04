@@ -57,6 +57,12 @@ const Login = () => {
         <Button type="submit" onSubmit={submitHandler}>
           Login
         </Button>
+        <div>
+          <ul>
+            <li>No acc? <Link to='/register'>Register</Link></li>
+            <li>Lost pw? <Link to='/reset'>Reset</Link></li>
+          </ul>
+        </div>
       </Form>
     </>
   );
